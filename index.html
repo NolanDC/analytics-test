@@ -56,6 +56,22 @@
     gtag('js', new Date());
 
     gtag('config', 'G-B6X1ZGDYQR');
+
+
+    gtag('event', 'my_event', {myParam: 'page-load'})
+    function sendEvent() {
+      gtag('event', 'my_event', {myParam: 'hello'})
+    }
+
+    function showOverlay(overlayId) {
+      document.getElementById(overlayId).style.display = 'block';
+      // Send the event to Google Analytics
+      gtag('event', 'page_view', { page_title: overlayId });
+    }
+
+    function hideOverlay(overlayId) {
+      document.getElementById(overlayId).style.display = 'none';
+    }    
   </script>    
 </head>
 <body>
@@ -98,21 +114,5 @@
             <button onclick="hideOverlay('overlay3')">Exit</button>
         </div>
     </div>
-
-    <script>
-
-        function sendEvent() {
-          gtag('event', 'my_event', {myParam: 'hello'})
-        }
-        function showOverlay(overlayId) {
-            document.getElementById(overlayId).style.display = 'block';
-            // Send the event to Google Analytics
-            gtag('event', 'page_view', { page_title: overlayId });
-        }
-
-        function hideOverlay(overlayId) {
-            document.getElementById(overlayId).style.display = 'none';
-        }
-    </script>
 </body>
 </html>
