@@ -102,6 +102,14 @@
     <script>
         function showOverlay(overlayId) {
             document.getElementById(overlayId).style.display = 'block';
+            // Define the event parameters
+            var eventParams = {
+              page_title: overlayId,
+              page_location: document.location
+            };
+
+            // Send the event to Google Analytics
+            gtag('event', 'page_view', eventParams);
         }
 
         function hideOverlay(overlayId) {
