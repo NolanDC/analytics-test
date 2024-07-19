@@ -92,7 +92,7 @@
             <div class="overlay-header">Overlay 3</div>
             <div class="overlay-title">The third and final overlay</div>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <button>Click Me</button>
+            <button onclick="sendEvent()">Click Me</button>
             <button>Press Here</button>
             <button>Do Something</button>
             <button onclick="hideOverlay('overlay3')">Exit</button>
@@ -100,6 +100,10 @@
     </div>
 
     <script>
+
+        function sendEvent() {
+          gtag('event', 'my_event', {myParam: 'hello'})
+        }
         function showOverlay(overlayId) {
             document.getElementById(overlayId).style.display = 'block';
             // Send the event to Google Analytics
