@@ -59,8 +59,12 @@
       }
       gtag("js", new Date());
       gtag("config", "G-B6X1ZGDYQR", {
-        "user_id": params.user || "anonymous",
+        user_id: params.user || "anonymous",
         cookie_flags: 'SameSite=None;Secure' 
+      });
+
+      gtag('set', 'user_properties', {
+        user_id_prop: params.user || "anonymous"
       });
 
       const params = getParams();
