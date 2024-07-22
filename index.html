@@ -88,7 +88,7 @@
         document.getElementById(overlayId).style.display = "block";
         user = stateObject.user;
         let params = { 
-            page_title: page_title,
+            page_title: overlayId,
             custom_user_id: user,
             [overlayId + '_viewed']: 1
          }
