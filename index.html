@@ -58,9 +58,9 @@
         dataLayer.push(arguments);
       }
       gtag("js", new Date());
-
       gtag("config", "G-B6X1ZGDYQR", {
-        "user_id": params.user || "anonymous"
+        "user_id": params.user || "anonymous",
+        cookie_flags: 'SameSite=None;Secure' 
       });
 
       const params = getParams();
@@ -69,22 +69,25 @@
         customUser: params.user || "anonymous",
       };
 
-      gtag("event", "my_event", stateObject);
-
-      function sendEvent() {
-        stateObject.myParam = "button-click";
-        gtag("event", "my_event", stateObject);
+      function buttonClicked(name) {
+        user = stateObject.user;
+        let params = {
+          customUser: user,
+          [name + '_clcked']: 1
+        }
+        gtag("event", "button_click", params)
       }
 
       function showOverlay(overlayId) {
         document.getElementById(overlayId).style.display = "block";
-        page_title = overlayId;
         user = stateObject.user;
-        // Send the event to Google Analytics
-        gtag("event", "page_view", { 
+        let params = { 
             page_title: page_title,
             customUser: user,
-         });
+            [overlayId + '_viewed']: 1
+         }
+
+        gtag("event", "page_view", params);
       }
 
       function hideOverlay(overlayId) {
@@ -150,8 +153,8 @@
           fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
           sunt in culpa qui officia deserunt mollit anim id est laborum.
         </p>
-        <button onclick="sendEvent()">Click Me</button>
-        <button>Press Here</button>
+        <button onclick="buttonClicked('button1')">Click Me</button>
+        <button onclick="buttonClicked('button2')">Press Here</button>
         <button>Do Something</button>
         <button onclick="hideOverlay('overlay3')">Exit</button>
       </div>
