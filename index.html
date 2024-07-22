@@ -59,7 +59,9 @@
       }
       gtag("js", new Date());
 
-      gtag("config", "G-B6X1ZGDYQR");
+      gtag("config", "G-B6X1ZGDYQR", {
+        "user_id": params.user || "anonymous"
+      });
 
       const params = getParams();
       let stateObject = {
