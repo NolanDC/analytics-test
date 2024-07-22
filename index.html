@@ -64,10 +64,11 @@
       const params = getParams();
       let stateObject = {
         myParam: "page-load",
-        user: params.user || "anonymous",
+        customUser: params.user || "anonymous",
       };
 
       gtag("event", "my_event", stateObject);
+
       function sendEvent() {
         stateObject.myParam = "button-click";
         gtag("event", "my_event", stateObject);
@@ -80,7 +81,7 @@
         // Send the event to Google Analytics
         gtag("event", "page_view", { 
             page_title: page_title,
-            user: user,
+            customUser: user,
          });
       }
 
