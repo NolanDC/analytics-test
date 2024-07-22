@@ -58,6 +58,9 @@
         dataLayer.push(arguments);
       }
       gtag("js", new Date());
+
+      const params = getParams();
+
       gtag("config", "G-B6X1ZGDYQR", {
         user_id: params.user || "anonymous",
         cookie_flags: 'SameSite=None;Secure' 
@@ -67,7 +70,6 @@
         user_id_prop: params.user || "anonymous"
       });
 
-      const params = getParams();
       let stateObject = {
         myParam: "page-load",
         user: params.user || "anonymous",
