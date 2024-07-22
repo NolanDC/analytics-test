@@ -66,13 +66,13 @@
       const params = getParams();
       let stateObject = {
         myParam: "page-load",
-        customUser: params.user || "anonymous",
+        user: params.user || "anonymous",
       };
 
       function buttonClicked(name) {
         user = stateObject.user;
         let params = {
-          customUser: user,
+          custom_user_id: user,
           [name + '_clcked']: 1
         }
         gtag("event", "button_click", params)
@@ -83,7 +83,7 @@
         user = stateObject.user;
         let params = { 
             page_title: page_title,
-            customUser: user,
+            custom_user_id: user,
             [overlayId + '_viewed']: 1
          }
 
