@@ -79,7 +79,9 @@
         user = stateObject.user;
         let params = {
           custom_user_id: user,
-          [name + '_clcked']: 1
+          [name + '_clcked']: 1,
+          event_category: 'button_click',
+          event_label: name
         }
         gtag("event", "button_click", params)
       }
