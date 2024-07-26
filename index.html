@@ -91,7 +91,7 @@
           event_category: 'button_click',
           event_label: name
         }
-        
+        console.log('button clicked', params)
         gtag("event", "button_click", params)
       }
 
@@ -102,6 +102,7 @@
           page_title: overlayId,
           [overlayId + '_viewed']: 1
         }
+        console.log('page viewed', params)
         gtag("event", "page_view", params);
       }
 
