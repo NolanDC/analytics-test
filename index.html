@@ -58,29 +58,30 @@
         dataLayer.push(arguments);
       }
       gtag("js", new Date());
-
-      const params = getParams();
-
       gtag("config", "G-B6X1ZGDYQR", {
-        user_id: params.user || "anonymous",
         cookie_flags: 'SameSite=None;Secure' 
       });
 
-      gtag('set', 'user_properties', {
-        user_id_prop: params.user || "anonymous"
-      });
 
       let globalEventParams = {
-        custom_user_id: params.user || "anonymous",
-        custom_team_id: params.team || "unknown"
+        custom_user_id: "anonymous",
+        custom_team_id: "unknown"
       };
 
+      const params = getParams();
+      setGlobalEventParams(params.user || "anonymous", params.team || "unknown");
 
       function setGlobalEventParams(user, team) {
         globalEventParams = {
-          custom_user_id: params.user || "anonymous",
-          custom_team_id: params.team || "unknown"
+          custom_user_id: user,
+          custom_team_id: team
         }
+
+        gtag('set', 'user_properties', {
+          user_id_prop: user
+        })
+
+        gtag('set', {'user_id': user});
       }
 
       function buttonClicked(name) {
@@ -91,18 +92,16 @@
           event_label: name
         }
         
-        console.log('button clicked', params)
         gtag("event", "button_click", params)
       }
 
       function showOverlay(overlayId) {
         document.getElementById(overlayId).style.display = "block";
         let params = { 
-            ...globalEventParams,
-            page_title: overlayId,
-            [overlayId + '_viewed']: 1
-         }
-        console.log('page viewed', params)
+          ...globalEventParams,
+          page_title: overlayId,
+          [overlayId + '_viewed']: 1
+        }
         gtag("event", "page_view", params);
       }
 
